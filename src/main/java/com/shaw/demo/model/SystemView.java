@@ -1,8 +1,12 @@
 package com.shaw.demo.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "sys_view")
 public class SystemView {
@@ -13,6 +17,7 @@ public class SystemView {
 
     private String ipAddress;
 
+    @CreatedDate
     private Date createBy;
 
     public SystemView() {

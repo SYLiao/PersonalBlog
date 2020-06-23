@@ -1,11 +1,15 @@
 package com.shaw.demo.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@EntityListeners(AuditingEntityListener.class)
 @Entity
-@Table(name = "tbl_message")
-public class Message {
+@Table(name = "tbl_comment")
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +17,7 @@ public class Message {
 
     private String content;
 
+    @CreatedDate
     private Date createBy;
 
     private String email;
@@ -23,7 +28,7 @@ public class Message {
 
     private boolean isEffective;
 
-    public Message() {
+    public Comment() {
     }
 
     public long getId() {

@@ -1,8 +1,14 @@
 package com.shaw.demo.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
+import java.applet.AudioClip;
 import java.util.Date;
 
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "tbl_article_content")
 public class ArticleContent {
@@ -12,12 +18,10 @@ public class ArticleContent {
 
     private String content;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "article_id", referencedColumnName = "id")
-    private ArticleInfo articleInfo;
-
+    @CreatedDate
     private Date createBy;
 
+    @LastModifiedDate
     private Date modifiedBy;
 
     public ArticleContent() {
@@ -37,14 +41,6 @@ public class ArticleContent {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public ArticleInfo getArticleInfo() {
-        return articleInfo;
-    }
-
-    public void setArticleInfo(ArticleInfo articleInfo) {
-        this.articleInfo = articleInfo;
     }
 
     public Date getCreateBy() {

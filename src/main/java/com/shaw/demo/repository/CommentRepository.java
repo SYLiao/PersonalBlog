@@ -1,9 +1,9 @@
 package com.shaw.demo.repository;
 
-import com.shaw.demo.model.Message;
+import com.shaw.demo.model.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MessageRepository extends JpaRepository<Message, Long> {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
 }

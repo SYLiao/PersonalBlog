@@ -8,3 +8,9 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5Dialect
+
+logging:
+  path: /Users/shiyaoliao/MyBlogLog
+  level:
+    com.shaw.demo.controller.CategoryController: DEBUG
+    root: WARN

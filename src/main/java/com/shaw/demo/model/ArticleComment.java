@@ -1,8 +1,13 @@
 package com.shaw.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.Date;
 
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 @Table(name = "tbl_article_comment")
 public class ArticleComment {
@@ -10,14 +15,16 @@ public class ArticleComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "article_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn
+    @JsonBackReference
     private ArticleInfo articleInfo;
 
     @OneToOne
     @JoinColumn(name = "message_id", referencedColumnName = "id")
-    private Message message;
+    private Comment comment;
 
+    @CreatedDate
     private Date createBy;
 
     private boolean isEffective;
@@ -41,12 +48,12 @@ public class ArticleComment {
         this.articleInfo = articleInfo;
     }
 
-    public Message getMessage() {
-        return message;
+    public Comment getComment() {
+        return comment;
     }
 
-    public void setMessage(Message message) {
-        this.message = message;
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 
     public Date getCreateBy() {
